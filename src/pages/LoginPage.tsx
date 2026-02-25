@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Github, Loader2, AlertCircle } from 'lucide-react';
+import { Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   signInWithGoogle,
-  signInWithGithub,
   logOut,
   createUserProfile,
   type User,
@@ -17,18 +16,16 @@ interface LoginPageProps {
 
 export default function LoginPage({ onLogin, user }: LoginPageProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState<'google' | 'github' | null>(null);
+  const [isLoading, setIsLoading] = useState<'google' | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => { setIsVisible(true); }, []);
 
-  const handleSocialLogin = async (provider: 'google' | 'github') => {
-    setIsLoading(provider);
+  const handleSocialLogin = async () => {
+    setIsLoading('google');
     setError(null);
     try {
-      let result;
-      if (provider === 'google') result = await signInWithGoogle();
-      else                       result = await signInWithGithub();
+      const result = await signInWithGoogle();
 
       if (result.user) {
         await createUserProfile(result.user);
@@ -36,9 +33,7 @@ export default function LoginPage({ onLogin, user }: LoginPageProps) {
       }
     } catch (err: unknown) {
       const code = (err as { code?: string }).code;
-      if (code === 'auth/account-exists-with-different-credential') {
-        setError('An account with this email already exists. Try signing in with Google instead.');
-      } else if (code === 'auth/popup-closed-by-user') {
+      if (code === 'auth/popup-closed-by-user') {
         // user closed popup — no message needed
       } else {
         setError(err instanceof Error ? err.message : `Failed to sign in with ${provider}`);
@@ -123,22 +118,11 @@ export default function LoginPage({ onLogin, user }: LoginPageProps) {
 
         <div className={`space-y-3 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
-          {/* GitHub */}
-          <Button
-            variant="outline"
-            className="w-full justify-center gap-3 font-mono"
-            onClick={() => handleSocialLogin('github')}
-            disabled={isLoading !== null}
-          >
-            {isLoading === 'github' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Github className="w-4 h-4" />}
-            Continue with GitHub
-          </Button>
-
           {/* Google */}
           <Button
             variant="outline"
             className="w-full justify-center gap-3 font-mono"
-            onClick={() => handleSocialLogin('google')}
+            onClick={() => handleSocialLogin()}
             disabled={isLoading !== null}
           >
             {isLoading === 'google' ? (
