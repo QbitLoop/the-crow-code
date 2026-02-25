@@ -1,0 +1,238 @@
+export interface Skill {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  author: string;
+  githubUrl?: string;
+  installs?: string;
+  tags: string[];
+}
+
+export const skillCategories = [
+  'All',
+  'Development',
+  'Document Processing',
+  'Design & Creative',
+  'Communication',
+  'Testing',
+  'DevOps',
+  'Project Management',
+];
+
+export const skills: Skill[] = [
+  // Development
+  {
+    id: 'frontend-design',
+    name: 'frontend-design',
+    description: 'Instructs Claude to avoid "AI slop" or generic aesthetics and to make bold design decisions. Works very well for React & Tailwind.',
+    category: 'Development',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['React', 'Tailwind', 'Design'],
+  },
+  {
+    id: 'mcp-builder',
+    name: 'MCP Builder',
+    description: 'Guides creation of high-quality MCP (Model Context Protocol) servers for integrating external APIs and services with LLMs.',
+    category: 'Development',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['MCP', 'API', 'Integration'],
+  },
+  {
+    id: 'web-artifacts-builder',
+    name: 'Web Artifacts Builder',
+    description: 'Build complex claude.ai HTML artifacts using React, Tailwind CSS, and shadcn/ui components.',
+    category: 'Development',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['React', 'Tailwind', 'shadcn/ui'],
+  },
+  {
+    id: 'aws-skills',
+    name: 'AWS Skills',
+    description: 'AWS development with CDK best practices, cost optimization MCP servers, and serverless/event-driven architecture patterns.',
+    category: 'Development',
+    author: 'ComposioHQ',
+    githubUrl: 'https://github.com/ComposioHQ/awesome-claude-skills',
+    tags: ['AWS', 'CDK', 'Serverless'],
+  },
+  {
+    id: 'playwright-skill',
+    name: 'Playwright Browser Automation',
+    description: 'Model-invoked Playwright automation for testing and validating web applications.',
+    category: 'Testing',
+    author: 'lackeyjb',
+    githubUrl: 'https://github.com/ComposioHQ/awesome-claude-skills',
+    tags: ['Testing', 'Playwright', 'Automation'],
+  },
+  {
+    id: 'ios-simulator-skill',
+    name: 'iOS Simulator',
+    description: 'Enables Claude to interact with iOS Simulator for testing and debugging iOS applications.',
+    category: 'Development',
+    author: 'conorluddy',
+    githubUrl: 'https://github.com/ComposioHQ/awesome-claude-skills',
+    tags: ['iOS', 'Simulator', 'Testing'],
+  },
+  // Document Processing
+  {
+    id: 'docx-skill',
+    name: 'DOCX Processor',
+    description: 'Create, edit, and analyze Word documents with support for tracked changes, comments, formatting preservation, and text extraction.',
+    category: 'Document Processing',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['Word', 'Documents', 'Office'],
+  },
+  {
+    id: 'pdf-skill',
+    name: 'PDF Toolkit',
+    description: 'Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms.',
+    category: 'Document Processing',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['PDF', 'Documents', 'Forms'],
+  },
+  {
+    id: 'pptx-skill',
+    name: 'PowerPoint Creator',
+    description: 'Create, edit, and analyze PowerPoint presentations with support for layouts, templates, charts, and automated slide generation.',
+    category: 'Document Processing',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['PowerPoint', 'Presentations', 'Slides'],
+  },
+  {
+    id: 'xlsx-skill',
+    name: 'Excel Analyzer',
+    description: 'Create, edit, and analyze Excel spreadsheets with support for formulas, formatting, data analysis, and visualization.',
+    category: 'Document Processing',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['Excel', 'Spreadsheets', 'Data'],
+  },
+  // Design & Creative
+  {
+    id: 'algorithmic-art',
+    name: 'Algorithmic Art',
+    description: 'Create generative art using p5.js with seeded randomness, flow fields, and particle systems.',
+    category: 'Design & Creative',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['p5.js', 'Generative Art', 'Creative'],
+  },
+  {
+    id: 'canvas-design',
+    name: 'Canvas Design',
+    description: 'Design beautiful visual art in .png and .pdf formats using design philosophies.',
+    category: 'Design & Creative',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['Design', 'Canvas', 'Visual'],
+  },
+  {
+    id: 'd3-visualization',
+    name: 'D3.js Visualization',
+    description: 'Teaches Claude to produce D3 charts and interactive data visualizations.',
+    category: 'Design & Creative',
+    author: 'chrisvoncsefalvay',
+    githubUrl: 'https://github.com/ComposioHQ/awesome-claude-skills',
+    tags: ['D3.js', 'Charts', 'Visualization'],
+  },
+  // Communication
+  {
+    id: 'brand-guidelines',
+    name: 'Brand Guidelines',
+    description: 'Apply Anthropic\'s official brand colors and typography to artifacts.',
+    category: 'Communication',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['Branding', 'Design', 'Guidelines'],
+  },
+  {
+    id: 'internal-comms',
+    name: 'Internal Communications',
+    description: 'Write internal communications like status reports, newsletters, and FAQs.',
+    category: 'Communication',
+    author: 'anthropics',
+    githubUrl: 'https://github.com/anthropics/skills',
+    tags: ['Communication', 'Writing', 'Internal'],
+  },
+  {
+    id: 'changelog-generator',
+    name: 'Changelog Generator',
+    description: 'Automatically creates user-facing changelogs from git commits by analyzing history and transforming technical commits into customer-friendly release notes.',
+    category: 'Communication',
+    author: 'ComposioHQ',
+    githubUrl: 'https://github.com/ComposioHQ/awesome-claude-skills',
+    tags: ['Git', 'Changelog', 'Documentation'],
+  },
+  // Testing
+  {
+    id: 'tdd-skill',
+    name: 'Test-Driven Development',
+    description: 'Use when implementing any feature or bugfix, before writing implementation code.',
+    category: 'Testing',
+    author: 'obra',
+    githubUrl: 'https://github.com/obra/superpowers',
+    tags: ['TDD', 'Testing', 'Development'],
+  },
+  {
+    id: 'pypict-skill',
+    name: 'PICT Testing',
+    description: 'Design comprehensive test cases using PICT (Pairwise Independent Combinatorial Testing) for requirements or code.',
+    category: 'Testing',
+    author: 'ComposioHQ',
+    githubUrl: 'https://github.com/ComposioHQ/awesome-claude-skills',
+    tags: ['Testing', 'PICT', 'Combinatorial'],
+  },
+  // DevOps
+  {
+    id: 'git-worktrees',
+    name: 'Git Worktrees',
+    description: 'Creates isolated git worktrees with smart directory selection and safety verification.',
+    category: 'DevOps',
+    author: 'obra',
+    githubUrl: 'https://github.com/obra/superpowers',
+    tags: ['Git', 'Worktrees', 'DevOps'],
+  },
+  {
+    id: 'finishing-branch',
+    name: 'Finishing a Development Branch',
+    description: 'Guides completion of development work by presenting clear options and handling chosen workflow.',
+    category: 'DevOps',
+    author: 'obra',
+    githubUrl: 'https://github.com/obra/superpowers',
+    tags: ['Git', 'Workflow', 'DevOps'],
+  },
+  // Project Management
+  {
+    id: 'linear-skill',
+    name: 'Linear Integration',
+    description: 'Manage Linear issues, projects, and teams with MCP tools, SDK scripts, and GraphQL fallbacks for reliable project tracking.',
+    category: 'Project Management',
+    author: 'ComposioHQ',
+    githubUrl: 'https://github.com/ComposioHQ/awesome-claude-skills',
+    tags: ['Linear', 'Project Management', 'Tracking'],
+  },
+  {
+    id: 'meeting-analyzer',
+    name: 'Meeting Insights Analyzer',
+    description: 'Transforms your meeting transcripts into actionable insights about your communication patterns.',
+    category: 'Project Management',
+    author: 'obra',
+    githubUrl: 'https://github.com/obra/superpowers',
+    tags: ['Meetings', 'Analysis', 'Insights'],
+  },
+  {
+    id: 'plannotator',
+    name: 'Plan Notator',
+    description: 'Interactive plan review UI for Claude Code with visual annotation, offline sharing, and Obsidian/Bear integration.',
+    category: 'Project Management',
+    author: 'obra',
+    githubUrl: 'https://github.com/obra/superpowers',
+    tags: ['Planning', 'Annotation', 'Obsidian'],
+  },
+];
