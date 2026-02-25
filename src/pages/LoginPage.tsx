@@ -5,7 +5,6 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   signInWithGoogle,
   signInWithGithub,
-  signInWithApple,
   logOut,
   createUserProfile,
   type User,
@@ -18,19 +17,18 @@ interface LoginPageProps {
 
 export default function LoginPage({ onLogin, user }: LoginPageProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isLoading, setIsLoading] = useState<'google' | 'github' | 'apple' | null>(null);
+  const [isLoading, setIsLoading] = useState<'google' | 'github' | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => { setIsVisible(true); }, []);
 
-  const handleSocialLogin = async (provider: 'google' | 'github' | 'apple') => {
+  const handleSocialLogin = async (provider: 'google' | 'github') => {
     setIsLoading(provider);
     setError(null);
     try {
       let result;
-      if (provider === 'google')      result = await signInWithGoogle();
-      else if (provider === 'github') result = await signInWithGithub();
-      else                            result = await signInWithApple();
+      if (provider === 'google') result = await signInWithGoogle();
+      else                       result = await signInWithGithub();
 
       if (result.user) {
         await createUserProfile(result.user);
@@ -150,24 +148,8 @@ export default function LoginPage({ onLogin, user }: LoginPageProps) {
             Continue with Google
           </Button>
 
-          {/* Apple */}
-          <Button
-            variant="outline"
-            className="w-full justify-center gap-3 font-mono"
-            onClick={() => handleSocialLogin('apple')}
-            disabled={isLoading !== null}
-          >
-            {isLoading === 'apple' ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.53 4.08zm-5.85-15.1c.07-2.04 1.76-3.79 3.78-3.94.29 2.32-1.93 4.48-3.78 3.94z"/>
-              </svg>
-            )}
-            Continue with Apple
-          </Button>
 
-        </div>
+</div>
 
         <div className={`mt-8 p-4 bg-muted/50 border border-border rounded-lg transition-all duration-700 delay-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           <p className="text-xs text-muted-foreground font-mono text-center">
