@@ -54,8 +54,8 @@ export default function Header({ currentPage, onPageChange, user, onLogout }: He
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-2 group"
           >
-            <span className="text-2xl">🐦‍⬛</span>
-            <span className="font-mono font-bold text-sm tracking-wider hidden sm:block group-hover:text-crow-accent transition-colors">
+            <img src="/Crow.png" alt="Crow" className="w-8 h-8 object-contain" />
+            <span className="font-mono font-bold text-sm tracking-wider group-hover:text-crow-accent transition-colors">
               THE.CROW.CODE
             </span>
           </button>
