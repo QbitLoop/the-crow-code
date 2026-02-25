@@ -102,8 +102,8 @@ export default function LoginPage({ onLogin, user }: LoginPageProps) {
       <div className="max-w-md mx-auto">
 
         <div className={`text-center mb-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-crow-accent/10 mb-4">
-            <span className="text-3xl">🐦‍⬛</span>
+          <div className="mb-4">
+            <img src="/Crow.png" alt="The Crow" className="w-72 h-72 object-contain mx-auto drop-shadow-2xl" />
           </div>
           <h1 className="font-mono text-2xl font-bold mb-2">Welcome to THE.CROW.CODE</h1>
           <p className="text-muted-foreground text-sm">Sign in to save your favorite skills and MCP servers</p>
