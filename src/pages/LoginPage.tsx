@@ -35,8 +35,14 @@ export default function LoginPage({ onLogin, user }: LoginPageProps) {
         onLogin?.(result.user);
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : `Failed to sign in with ${provider}`;
-      setError(msg);
+      const code = (err as { code?: string }).code;
+      if (code === 'auth/account-exists-with-different-credential') {
+        setError('An account with this email already exists. Try signing in with Google instead.');
+      } else if (code === 'auth/popup-closed-by-user') {
+        // user closed popup — no message needed
+      } else {
+        setError(err instanceof Error ? err.message : `Failed to sign in with ${provider}`);
+      }
     } finally {
       setIsLoading(null);
     }
