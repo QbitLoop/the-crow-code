@@ -36,7 +36,7 @@ export default function LoginPage({ onLogin, user }: LoginPageProps) {
       if (code === 'auth/popup-closed-by-user') {
         // user closed popup — no message needed
       } else {
-        setError(err instanceof Error ? err.message : `Failed to sign in with ${provider}`);
+        setError(err instanceof Error ? err.message : 'Failed to sign in with Google');
       }
     } finally {
       setIsLoading(null);
