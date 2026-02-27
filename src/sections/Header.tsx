@@ -16,6 +16,7 @@ const navLinks = [
   { label: 'Home', value: 'home' },
   { label: 'MCP', value: 'mcp' },
   { label: 'Skills', value: 'skills' },
+  { label: 'Plugins', value: 'plugins' },
   { label: 'Tools', value: 'tools' },
   { label: 'Submit', value: 'submit' },
 ];

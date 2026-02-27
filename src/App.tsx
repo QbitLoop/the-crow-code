@@ -7,6 +7,7 @@ import SkillsPage from '@/pages/SkillsPage';
 import ToolsPage from '@/pages/ToolsPage';
 import LoginPage from '@/pages/LoginPage';
 import SubmitPage from '@/pages/SubmitPage';
+import PluginsPage from '@/pages/PluginsPage';
 import './App.css';
 import { 
   onAuthStateChanged, 
@@ -16,7 +17,7 @@ import {
   type User 
 } from '@/lib/firebase';
 
-type Page = 'home' | 'mcp' | 'skills' | 'tools' | 'login' | 'submit';
+type Page = 'home' | 'mcp' | 'skills' | 'plugins' | 'tools' | 'login' | 'submit';
 
 function AppContent() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -25,6 +26,7 @@ function AppContent() {
     skills: [] as string[],
     mcpServers: [] as string[],
     tools: [] as string[],
+    plugins: [] as string[],
   });
   const [isAuthLoading, setIsAuthLoading] = useState(true);
 
@@ -44,7 +46,7 @@ function AppContent() {
         }
       } else {
         setUser(null);
-        setFavorites({ skills: [], mcpServers: [], tools: [] });
+        setFavorites({ skills: [], mcpServers: [], tools: [], plugins: [] });
       }
       setIsAuthLoading(false);
     });
@@ -66,7 +68,7 @@ function AppContent() {
     setFavorites({ skills: [], mcpServers: [], tools: [] });
   }, []);
 
-  const handleToggleFavorite = useCallback(async (type: 'skills' | 'mcpServers' | 'tools', id: string) => {
+  const handleToggleFavorite = useCallback(async (type: 'skills' | 'mcpServers' | 'tools' | 'plugins', id: string) => {
     if (!user) {
       // Redirect to login if not authenticated
       setCurrentPage('login');
@@ -119,9 +121,16 @@ function AppContent() {
         );
       case 'tools':
         return (
-          <ToolsPage 
+          <ToolsPage
             favorites={favorites.tools}
             onToggleFavorite={(id) => handleToggleFavorite('tools', id)}
+          />
+        );
+      case 'plugins':
+        return (
+          <PluginsPage
+            favorites={favorites.plugins}
+            onToggleFavorite={(id) => handleToggleFavorite('plugins', id)}
           />
         );
       case 'login':

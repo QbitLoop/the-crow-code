@@ -26,7 +26,7 @@ interface PlayingCardModalProps {
   isFavorite?: boolean;
   onToggleFavorite?: () => void;
   installCommand?: string;
-  type: 'mcp' | 'skill' | 'tool';
+  type: 'mcp' | 'skill' | 'tool' | 'plugin';
 }
 
 export default function PlayingCardModal({
@@ -79,6 +79,8 @@ export default function PlayingCardModal({
         return <span className="text-crow-accent font-mono text-xs">SKILL</span>;
       case 'tool':
         return <span className="text-crow-accent font-mono text-xs">TOOL</span>;
+      case 'plugin':
+        return <span className="text-crow-accent font-mono text-xs">PLUGIN</span>;
     }
   };
 
@@ -90,6 +92,8 @@ export default function PlayingCardModal({
         return '♥'; // Heart for Skills
       case 'tool':
         return '♦'; // Diamond for Tools
+      case 'plugin':
+        return '♣'; // Club for Plugins
       default:
         return '♣';
     }

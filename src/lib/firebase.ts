@@ -58,6 +58,7 @@ export interface UserProfile {
     skills: string[];
     mcpServers: string[];
     tools: string[];
+    plugins: string[];
   };
   createdAt: Date;
 }
@@ -135,14 +136,14 @@ export async function createUserProfile(user: User): Promise<void> {
     email: user.email,
     displayName: user.displayName,
     photoURL: user.photoURL,
-    favorites: { skills: [], mcpServers: [], tools: [] },
+    favorites: { skills: [], mcpServers: [], tools: [], plugins: [] },
     createdAt: serverTimestamp(),
   });
 }
 
 export async function updateFavorites(
   uid: string,
-  type: 'skills' | 'mcpServers' | 'tools',
+  type: 'skills' | 'mcpServers' | 'tools' | 'plugins',
   itemId: string,
   action: 'add' | 'remove',
 ): Promise<void> {
