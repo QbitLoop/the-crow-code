@@ -7,7 +7,6 @@ import {
   Bot,
   FileCode,
   Brain,
-  FileText,
   FlaskConical,
   Wrench,
   GitBranch,
@@ -17,7 +16,6 @@ import {
   Check,
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { plugins, pluginCategories, type Plugin } from '@/data/plugins';
 import PlayingCardModal from '@/components/PlayingCardModal';

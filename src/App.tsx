@@ -65,7 +65,7 @@ function AppContent() {
 
   const handleLogout = useCallback(() => {
     setUser(null);
-    setFavorites({ skills: [], mcpServers: [], tools: [] });
+    setFavorites({ skills: [], mcpServers: [], tools: [], plugins: [] });
   }, []);
 
   const handleToggleFavorite = useCallback(async (type: 'skills' | 'mcpServers' | 'tools' | 'plugins', id: string) => {
