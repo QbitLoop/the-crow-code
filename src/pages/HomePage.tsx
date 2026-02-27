@@ -1,43 +1,37 @@
 import { useState, useEffect } from 'react';
-import { Terminal, Copy, Check, ArrowRight, Sparkles, Zap, Layers } from 'lucide-react';
+import { Terminal, Copy, Check, ArrowRight, Sparkles, Zap, Layers, Puzzle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface HomePageProps {
   onPageChange: (page: string) => void;
 }
 
-const agentTags = [
-  'Claude Code',
-  'Cursor',
-  'Cline',
-  'Windsurf',
-  'Zed',
-  'Amp',
-  'Codex CLI',
-  'Roo Code',
-  'VS Code',
-  'Gemini CLI',
-];
-
 const features = [
   {
     icon: Sparkles,
-    title: 'Agent Skills',
-    description: 'Reusable instructions that teach your AI agent how to perform tasks in a repeatable way.',
+    title: 'Skills',
+    description: 'Reusable instructions that teach Claude Code how to perform tasks in a consistent, repeatable way.',
     action: 'Browse Skills',
     page: 'skills',
   },
   {
+    icon: Puzzle,
+    title: 'Plugins',
+    description: 'Official and community plugins — skills, agents, hooks, and MCP servers bundled into one install.',
+    action: 'Browse Plugins',
+    page: 'plugins',
+  },
+  {
     icon: Zap,
     title: 'MCP Servers',
-    description: 'Model Context Protocol servers that extend your agent\'s capabilities with external tools.',
+    description: 'Model Context Protocol servers that extend Claude\'s capabilities with external data and tools.',
     action: 'Browse MCP',
     page: 'mcp',
   },
   {
     icon: Layers,
-    title: 'AI Tools',
-    description: 'Curated collection of the best AI coding tools, IDEs, and frameworks for developers.',
+    title: 'Tools',
+    description: 'Curated AI coding tools, IDEs, and frameworks that work well in a Claude Code workflow.',
     action: 'Browse Tools',
     page: 'tools',
   },
@@ -72,7 +66,7 @@ export default function HomePage({ onPageChange }: HomePageProps) {
                   }`}
                 >
                   <Sparkles className="w-3 h-3" />
-                  <span>Now with MCP Support</span>
+                  <span>Skills · Plugins · MCP · Tools</span>
                 </div>
                 <h1
                   className={`font-mono text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight transition-all duration-700 delay-100 ${
@@ -87,7 +81,7 @@ export default function HomePage({ onPageChange }: HomePageProps) {
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  Find agent skills, MCP servers, and tools for Claude Code, Cursor, and more.
+                  The Claude Code directory — skills, plugins, MCP servers, and tools.
                 </p>
               </div>
 
@@ -140,31 +134,33 @@ export default function HomePage({ onPageChange }: HomePageProps) {
               </div>
             </div>
 
-            {/* Right Content - Agent Tags */}
+            {/* Right Content - Stats */}
             <div className="lg:col-span-2">
               <div
                 className={`transition-all duration-700 delay-500 ${
                   isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
                 }`}
               >
-                <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-4">
-                  Works with these agents
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {agentTags.map((tag, index) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center px-3 py-1.5 bg-muted border border-border rounded-md text-sm font-mono text-muted-foreground hover:text-foreground hover:border-crow-accent/30 transition-all cursor-default"
-                      style={{
-                        animationDelay: `${index * 0.1}s`,
-                      }}
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { label: 'Skills', value: '20+', page: 'skills' },
+                    { label: 'Plugins', value: '38', page: 'plugins' },
+                    { label: 'MCP Servers', value: '40+', page: 'mcp' },
+                    { label: 'Tools', value: '30+', page: 'tools' },
+                  ].map((stat) => (
+                    <button
+                      key={stat.label}
+                      onClick={() => onPageChange(stat.page)}
+                      className="bg-muted/50 border border-border rounded-xl p-5 text-left hover:border-crow-accent/30 hover:bg-muted transition-all group"
                     >
-                      {tag}
-                    </span>
+                      <div className="font-mono text-3xl font-bold text-crow-accent group-hover:scale-105 transition-transform origin-left">
+                        {stat.value}
+                      </div>
+                      <div className="font-mono text-xs text-muted-foreground mt-1">
+                        {stat.label}
+                      </div>
+                    </button>
                   ))}
-                  <span className="inline-flex items-center px-3 py-1.5 text-sm font-mono text-muted-foreground">
-                    + any MCP client
-                  </span>
                 </div>
               </div>
             </div>
@@ -185,11 +181,11 @@ export default function HomePage({ onPageChange }: HomePageProps) {
               What's in the directory
             </h2>
             <p className="text-muted-foreground">
-              Everything AI agents need to be useful, curated and ready to use.
+              Everything you need to extend Claude Code — curated, categorized, and ready to install.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
@@ -242,11 +238,18 @@ export default function HomePage({ onPageChange }: HomePageProps) {
                 Browse skills
               </Button>
               <Button
+                onClick={() => onPageChange('plugins')}
+                variant="outline"
+                className="border-border hover:border-crow-accent/50 font-mono px-8 py-6 text-sm rounded-lg"
+              >
+                Browse plugins
+              </Button>
+              <Button
                 onClick={() => onPageChange('mcp')}
                 variant="outline"
                 className="border-border hover:border-crow-accent/50 font-mono px-8 py-6 text-sm rounded-lg"
               >
-                Browse MCP servers
+                Browse MCP
               </Button>
             </div>
           </div>
